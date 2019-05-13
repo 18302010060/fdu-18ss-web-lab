@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title>Chapter 10</title>
+    <link rel="stylesheet" href="lab7.css">
+    <script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#3").click(function(){
+            $("#1").attr("src",$("#3").attr("src").replace("small","medium"))
+            $("#2").html($("#3").attr("alt"));
+            $("figcaption span").html($("#3").attr("title"));
+            alert($("#sliderGray").val());
+        })
+        $("#4").click(function(){
+            $("#1").attr("src",$("#4").attr("src").replace("small","medium"))
+            $("#2").html($("#4").attr("alt"));
+            $("figcaption span").html($("#4").attr("title"));
+        })
+        $("#5").click(function(){
+            $("#1").attr("src",$("#5").attr("src").replace("small","medium"));
+            $("#2").html($("#5").attr("alt"));
+            $("figcaption span").html($("#5").attr("title"));
+        })
+        $("#6").click(function(){
+            $("#1").attr("src",$("#6").attr("src").replace("small","medium"));
+            $("#2").html($("#6").attr("alt"));
+            $("figcaption span").html($("#6").attr("title"));
+        })
+        $("#7").click(function(){
+            $("#1").attr("src",$("#7").attr("src").replace("small","medium"));
+            $("#2").html($("#7").attr("alt"));
+            $("figcaption span").html($("#7").attr("title"));
+        })
+
+        $("#sliderOpacity").change(function(){
+            a = $("#sliderOpacity").val() / 100;
+            $("#numOpacity").text($("#sliderOpacity").val());
+            $("#imgManipulated").children("img").css("opacity",a);
+        })
+        $("#sliderSaturation").change(function(){
+            b = $("#sliderSaturation").val() / 100;
+            $("#numSaturation").text($("#sliderSaturation").val());
+            $("#imgManipulated").children("img").css({'-webkit-filter' :'saturate('+b+')', "filter" :'saturate('+b+')'});
+        })
+        $("#sliderBrightness").change(function(){
+            c = $("#sliderBrightness").val() / 100;
+            $("#numBrightness").text($("#sliderBrightness").val());
+            $("#imgManipulated").children("img").css({'-webkit-filter' :'brightness('+c+')', "filter" :'brightness('+c+')'});
+        })
+        $("#sliderHue").change(function(){
+            c = $("#sliderHue").val();
+            $("#numHue").text($("#sliderHue").val());
+            $("#imgManipulated").children("img").css({'-webkit-filter' :'hue-rotate('+c+'deg)', "filter" :'hue-rotate('+c+'deg)'});
+        })
+
+        $("#sliderGray").change(function(){
+            c = $("#sliderGray").val() / 100;
+            $("#numGray").text($("#sliderGray").val());
+            $("#imgManipulated").children("img").css({'-webkit-filter' :'grayscale('+c+')', "filter" :'grayscale('+c+')'});
+        })
+        $("#sliderBlur").change(function(){
+            f = $("#sliderBlur").val() ;
+            $("#numBlur").text($("#sliderBlur").val());
+            $("#imgManipulated").children("img").css({'-webkit-filter' :'blur('+f+'px)', "filter" :'blur('+f+'px)'});
+        })
+        $("#resetFilters").click(function(event){
+            event.preventDefault();
+            $("#sliderOpacity").val(100);
+            $("#sliderSaturation").val(100);
+            $("#sliderBrightness").val(100);
+            $("#sliderHue").val(0);
+            $("#sliderGray").val(0);
+            $("#sliderBlur").val(0);
+            $("#numOpacity").text(100);
+            $("#numSaturation").text(100);
+            $("#numBrightness").text(100);
+            $("#numHue").text(0);
+            $("#numGray").text(0);
+            $("#numBlur").text(0);
+            $("#imgManipulated").children("img").css({
+                '-webkit-filter' :'none', "filter" :'none'
+            })
+
+
+        })
+
+
+
+    })
+</script>      
+</head>    
+<body class="tiled">
+<header>
+    <h1>Art Filters</h1>
+</header>
+<main>
+    <div id="sliderBox">
+        <form>
+           <label>Opacity: </label><p><input type="range" id="sliderOpacity" min="0" max="100" value="100" class="sliders" /> <span id="numOpacity">100</span>%</p>
+           <p><label>Saturation: </label><input type="range" id="sliderSaturation" min="1" max="300" value="100" class="sliders"/> <span id="numSaturation">100</span>%</p>
+           <p><label>Brightness: </label><input type="range" id="sliderBrightness" min="0" max="300" value="100" class="sliders" /> <span id="numBrightness">100</span>%</p>
+           <p><label>Hue Rotate: </label><input type="range" id="sliderHue" min="0" max="360" value="0" class="sliders" /> <span id="numHue">0</span>deg</p>
+           <p><label>Grayscale: </label><input type="range" id="sliderGray" min="0" max="100" value="0" class="sliders"/> <span id="numGray">0</span>%</p>
+           <p><label>Blur: </label><input type="range" id="sliderBlur" min="0" max="10" value="0" class="sliders" /> <span id="numBlur">0</span>px</p>
+           <p><button id="resetFilters">Reset</button> </p>
+        </form>    
+    </div>
+    <figure id="imgManipulated">
+        <img id="1" src="images/medium/painting1.jpg" >
+        <figcaption>
+            <em id="2">Still Life with Flowers in a Glass Vase</em> <br>
+            <span>Jan Davidsz. de Heem, 1650 - 1683</span>
+        </figcaption>
+    </figure>   
+    <div id="thumbBox">
+        <div><img id="3"src="images/small/painting1.jpg"  alt="Still Life with Flowers in a Glass Vase" title="Jan Davidsz. de Heem, 1650 - 1683"/></div>
+        <div><img id="4"src="images/small/painting2.jpg"  alt="Portrait of Alida Christina Assink" title="Jan Adam Kruseman, 1833"/></div>
+        <div><img id="5"src="images/small/painting3.jpg"  alt="Self-portrait" title="Vincent van Gogh, 1887"/></div>
+        <div><img id="6"src="images/small/painting4.jpg"  alt="William II, Prince of Orange, and his Bride, Mary Stuart" title="Anthony van Dyck, 1641"/></div>
+        <div><img id="7"src="images/small/painting5.jpg"  alt="Milkmaid" title="Johannes Vermeer, c. 1660"/></div>
+    </div>
+</main>
+<script>
+
+</script>    
+</body>   
+</html>
